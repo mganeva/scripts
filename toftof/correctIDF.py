@@ -39,10 +39,18 @@ for component in root.iter('{http://www.mantidproject.org/IDF/1.0}type'):
                 #u3 = -1.0*np.sin(0.5*theta)*np.cos(0.5*phi)
 
                 # q3*q2*q1
-                u0 = 0.5*(np.cos(theta/2) + np.sin(theta/2))*np.sin(phi)
-                u1 = np.cos(theta/2)*np.cos(phi/2)*np.cos(phi/2) - np.sin(theta/2)*np.sin(phi/2)*np.sin(phi/2)
-                u2 = 0.5*(np.cos(theta/2) + np.sin(theta/2))*np.sin(phi)
-                u3 = -np.sin(theta/2)*np.cos(phi/2)*np.cos(phi/2) + np.cos(theta/2)*np.sin(phi/2)*np.sin(phi/2)
+                if theta >= 0:
+                    # rotate around z by phi
+                    u0 = 0.5*(np.cos(theta/2) + np.sin(theta/2))*np.sin(phi)
+                    u1 = np.cos(theta/2)*np.cos(phi/2)*np.cos(phi/2) - np.sin(theta/2)*np.sin(phi/2)*np.sin(phi/2)
+                    u2 = 0.5*(np.cos(theta/2) + np.sin(theta/2))*np.sin(phi)
+                    u3 = -np.sin(theta/2)*np.cos(phi/2)*np.cos(phi/2) + np.cos(theta/2)*np.sin(phi/2)*np.sin(phi/2)
+                else:
+                    # rotate around z by -phi
+                    u0 = 0.5*(np.cos(theta/2) - np.sin(theta/2))*np.sin(phi)
+                    u1 = np.cos(theta/2)*np.cos(phi/2)*np.cos(phi/2) + np.sin(theta/2)*np.sin(phi/2)*np.sin(phi/2)
+                    u2 = 0.5*(-np.cos(theta/2) + np.sin(theta/2))*np.sin(phi)
+                    u3 = -np.sin(theta/2)*np.cos(phi/2)*np.cos(phi/2) - np.cos(theta/2)*np.sin(phi/2)*np.sin(phi/2)
             
                 angle = 2.0*np.arccos(u0)
                 x = u1/np.sin(0.5*angle)
