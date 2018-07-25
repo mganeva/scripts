@@ -1,3 +1,15 @@
+#=======================
+# rotation 1: by angle pi-phi around x axis (1,0,0)
+# quaternion q1 = sin(phi/2) + i*cos(phi/2)
+# rotation 2: by angle theta around y axis (0,1,0)
+# quaternion q2 = cos(theta/2) + j*sin(phi/2)
+# rotation 3: by angle phi around z axis (0,0,1)
+# quaternion q3 = cos(phi/2) + k*sin(phi/2)
+# the total rotation is described by q3*q2*q1
+#
+# phi = 0 for bank_1, -7.8 deg for bank_2, 7.8 deg for bank_3, 15.6 for bank_4
+#=======================
+
 import numpy as np
 import lxml.etree as ET
 
@@ -20,10 +32,17 @@ for component in root.iter('{http://www.mantidproject.org/IDF/1.0}type'):
                 theta = np.radians(float(subnode.get('t')))
                 # phi = np.radians(float(subnode.get('p')))
                 
-                u0 = np.cos(0.5*theta)*np.sin(0.5*phi)
-                u1 = np.cos(0.5*theta)*np.cos(0.5*phi)
-                u2 = np.sin(0.5*theta)*np.sin(0.5*phi)
-                u3 = -1.0*np.sin(0.5*theta)*np.cos(0.5*phi)
+                # q2*q1
+                #u0 = np.cos(0.5*theta)*np.sin(0.5*phi)
+                #u1 = np.cos(0.5*theta)*np.cos(0.5*phi)
+                #u2 = np.sin(0.5*theta)*np.sin(0.5*phi)
+                #u3 = -1.0*np.sin(0.5*theta)*np.cos(0.5*phi)
+
+                # q3*q2*q1
+                u0 = 0.5*(np.cos(theta/2) + np.sin(theta/2))*np.sin(phi)
+                u1 = np.cos(theta/2)*np.cos(phi/2)*np.cos(phi/2) - np.sin(theta/2)*np.sin(phi/2)*np.sin(phi/2)
+                u2 = 0.5*(np.cos(theta/2) + np.sin(theta/2))*np.sin(phi)
+                u3 = -np.sin(theta/2)*np.cos(phi/2)*np.cos(phi/2) + np.cos(theta/2)*np.sin(phi/2)*np.sin(phi/2)
             
                 angle = 2.0*np.arccos(u0)
                 x = u1/np.sin(0.5*angle)
