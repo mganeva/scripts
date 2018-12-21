@@ -29,7 +29,7 @@ for component in root.iter('{http://www.mantidproject.org/IDF/1.0}type'):
             phi = np.radians(15.6)
         for node in component:
             for subnode in node.iter('{http://www.mantidproject.org/IDF/1.0}location'):
-                theta = np.radians(float(subnode.get('t')))
+                theta=np.radians(float(subnode.get('t')))
                 # phi = np.radians(float(subnode.get('p')))
                 
                 # q2*q1
