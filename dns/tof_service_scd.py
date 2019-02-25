@@ -1,3 +1,12 @@
+
+from __future__ import (absolute_import, division, print_function, unicode_literals)
+
+# import mantid algorithms, numpy and matplotlib
+from mantid.simpleapi import *
+
+import matplotlib.pyplot as plt
+
+
 from os import listdir
 from os.path import isfile, join, splitext
 import re
@@ -17,7 +26,7 @@ runs = range(562964, 563104)
 a = 5.497
 b = 5.497
 c = 13.332
-omega_offset = 54.8
+omega_offset = -172.0
 u="1,0,0"
 v="0,1,0"
 alpha=90.0
@@ -43,8 +52,8 @@ bvector0 = '[100],unit,1,0,0,0'
 bvector1 = '[010],unit,0,1,0,0'
 bvector2 = '[001],unit,0,0,1,0'
 bvector3='dE,meV,0,0,0,1'
-extents = '-1.1,3.3,-3.3,0.75,-40,40,-10,4.64'
-bins = '130,80,1,1'
+extents = '-2.5,2.5,-0.5,2.5,-40,40,-10,4.64'
+bins = '230,180,1,1'
 
 # data and normalizations
 raw_data = BinMD('raw_edata', AxisAligned='0', BasisVector0=bvector0, BasisVector1=bvector1, BasisVector2=bvector2,  
