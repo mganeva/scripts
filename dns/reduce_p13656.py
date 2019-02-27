@@ -37,7 +37,7 @@ dEmin = -2.5
 dEmax = 2.5
 dEstep = 0.05
 
- #-------------------------
+#-------------------------
 # Data reduction
 #-------------------------   
 # set parameters dictionaries, do not change it
