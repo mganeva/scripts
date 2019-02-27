@@ -19,8 +19,6 @@ data_file_name = 'p13656_557{}.d_dat'
 elastic_channel = 658  # channel where the elastic peak is observed
 wavelength = 0.0          # neutron wavelength in Angstrom. If 0 will be read from data file.
 
-normalization = "mon_sum"   # alternatively 'duration'
-
 ecFactor = 0.8      # factor to multiply empty can before subtraction =0.8
 subtract_empty_can_from_vanadium = True     # put True  if yes or False if no
 
