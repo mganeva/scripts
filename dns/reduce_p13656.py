@@ -3,7 +3,7 @@ from dnstof import *
 
 __author__ = "m.ganeva.fz-juelich.de"
 
- #-------------------------
+#-------------------------
 # Settings
 #-------------------------   
 data_path = '/datadisk/data/dns/2018/p13656/data'
