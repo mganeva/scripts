@@ -1,5 +1,10 @@
 import numpy as np
 from dnstof import *
+from mantid.simpleapi import *
+from mantid.api import mtd, WorkspaceGroup
+import matplotlib.pyplot as plt
+from mantid import plots
+from matplotlib.colors import LogNorm
 
 __author__ = "m.ganeva.fz-juelich.de"
 
@@ -33,8 +38,8 @@ qmax = 2.65
 qstep = 0.025
 
 # binning in Energy Transfer (meV)
-dEmin = -2.5
-dEmax = 2.5
+dEmin = -25
+dEmax = 25
 dEstep = 0.05
 
 #-------------------------
@@ -95,6 +100,7 @@ data1 = Divide(data1, coefs)
 data2 = Divide(data2, coefs)
 vanadium_corr = Divide(vanadium, coefs)
 
+wvana = CloneWorkspace(vanadium_corr)
 # correct TOF to get EPP at 0 meV
 if correct_tof:
     data1 = CorrectTOF(data1, epptable)
