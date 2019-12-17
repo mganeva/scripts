@@ -38,8 +38,8 @@ qmax = 2.65
 qstep = 0.025
 
 # binning in Energy Transfer (meV)
-dEmin = -25
-dEmax = 25
+dEmin = -2.5
+dEmax = 2.5
 dEstep = 0.05
 
 #-------------------------
@@ -100,7 +100,7 @@ data1 = Divide(data1, coefs)
 data2 = Divide(data2, coefs)
 vanadium_corr = Divide(vanadium, coefs)
 
-wvana = CloneWorkspace(vanadium_corr)
+# wvana = CloneWorkspace(vanadium_corr)
 # correct TOF to get EPP at 0 meV
 if correct_tof:
     data1 = CorrectTOF(data1, epptable)
